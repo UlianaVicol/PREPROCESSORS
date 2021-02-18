@@ -1,0 +1,77 @@
+// VARIABLES
+$colorDark: #012839;
+$colorLight: #0974a1;
+$col-primary: #00c7ec;
+$background: #2C3D50;
+$effect: #2bc7bf;
+$size: 75px;
+
+body {
+    background-color: $colorDark;
+}
+.button {
+    width: $size;
+    height:$size;
+    background-image: linear-gradient(
+        darken($colorLight, 7%),
+        lighten($colorLight, 60%),
+        darken($colorLight, 7%));
+    text-shadow: 0px 0px $size / 100 darken($colorLight, 25%);
+    font-family: sans-serif;
+    font-size: $size / 6;
+    color: lighten($colorDark, 100%);
+    outline: none;
+    cursor:pointer;
+    display: inline-block;
+    position: relative;
+    border: $size / 30 solid $colorLight;
+    border-radius: 100%;
+    box-shadow: 0 0 $size / 100 $size / 100 darken($colorDark, 7%);
+    transition: all 0.2s ease-in;
+
+        &:hover {
+            color: lighten($colorDark, 100%);
+            text-shadow: 0px 0px $size / 100 darken($colorLight, 15%);
+            box-shadow: 0 0 30px 0 transparentize($col-primary, 0.5);
+            background-color: $col-primary;
+            transition: all 0.2s ease-out;
+            
+            &:before {
+            animation: shine 0.5s 0s linear;
+            }
+        }
+        &:active {
+            box-shadow: 0 0 $size / 10 $size / 10 darken($effect, 15%);
+            transition: box-shadow 0.2s ease-in;
+            background: $background;
+            color: lighten($colorDark, 100%);
+        }
+        &:before {
+            content: '';
+            display: block;
+            width: 0px;
+            height: 50%;
+            position: absolute;
+            top: 25%;
+            left: 0%;
+            opacity: 0;
+            background:lighten($colorDark, 100%);
+            box-shadow: 0 0 15px 3px lighten($colorDark, 100%);
+            transform: skewX(-20deg);
+        }
+    }
+
+    @keyframes shine {
+        from {
+            opacity: 0;
+            left: 0%;
+        }
+
+        50% {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+            left: 100%;
+        }
+    }
